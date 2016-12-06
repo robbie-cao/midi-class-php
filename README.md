@@ -72,7 +72,6 @@ demonstrates RTTL ringtone to binary MIDI file conversion (uses the RTTL extensi
 - <a href="http://www.recordare.com/default.asp">Recordare</a>
 - <a href="http://www.recordare.com/dtds/midixml.html">Standard MIDI File DTD: MIDI XML</a>
 - <a href="ftp://ftp.cs.ruu.nl/pub/MIDI/PROGRAMS/MSDOS/mf2t.zip">MF2T/T2MF</a>
-- [MF2T/T2MF](ftp://ftp.cs.ruu.nl/pub/MIDI/PROGRAMS/MSDOS/mf2t.zip)
 - <a href="http://www.midiox.com/">MIDI-OX</a>
 - <a href="http://www.beatnik.com/">Beatnik</a>
 
