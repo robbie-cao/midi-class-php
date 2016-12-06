@@ -75,6 +75,15 @@ demonstrates RTTL ringtone to binary MIDI file conversion (uses the RTTL extensi
 - <a href="http://www.midiox.com/">MIDI-OX</a>
 - <a href="http://www.beatnik.com/">Beatnik</a>
 
+## [Online Tools](http://flashmusicgames.com/midi/)
+
+- <a href="http://flashmusicgames.com/midi/mid2txt.php"><b>midi</b> to txt converter</a> - Binary <b>midi</b> file to text (MF2T/T2MF format) conversion
+- <a href="http://flashmusicgames.com/midi/txt2mid.php">txt to <b>midi</b> converter</a> - Text (MF2T/T2MF format) to binary <b>midi</b> file conversion
+- <a href="http://flashmusicgames.com/midi/mid2xml.php"><b>midi</b> to xml converter</a> - Binary <b>midi</b> file to <b>midi</b> XML conversion
+- <a href="http://flashmusicgames.com/midi/xml2mid.php">xml to <b>midi</b>  converter</a> - <b>midi</b> XML to binary <b>midi</b> file conversion
+- <a href="http://flashmusicgames.com/midi/mid2rttl.php"><b>midi</b> to rttl converter</a> - Simple binary <b>midi</b> file to RTTL ringtone conversion
+- <a href="http://flashmusicgames.com/midi/rttl2mid.php">rttl to <b>midi</b> converter</a> - RTTL ringtone to binary <b>midi</b> file conversion
+
 ## Contact
 
 [fluxus@freenet.de](fluxus@freenet.de)
