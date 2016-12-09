@@ -22,10 +22,10 @@ MIDI file (*.mid) to upload: <input type="file" name="mid_upload">
 <?php
 if ($file!=''){
 	require('midi.class.php');
-	
+
 	$midi = new Midi();
 	$midi->importMid($file);
-	
+
 	$maxTime=0;
 	foreach ($midi->tracks as $track){
 		$msgStr = $track[count($track)-1];

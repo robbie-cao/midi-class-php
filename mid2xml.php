@@ -6,19 +6,19 @@ $file=(isset($_FILES['mid_upload'])&&$_FILES['mid_upload']['tmp_name']!='')?$_FI
 
 If ($file!=''){
 	require('midi.class.php');
-	
+
 	$midi = new Midi();
 	$midi->importMid($file);
 	$xml = $midi->getXml($tt);
-	
+
 	$fn = $_FILES['mid_upload']['name'];
-	
+
 	$a = explode('.',$fn);
 	array_pop($a);
 	array_push($a,"xml");
 	$xn = implode('.',$a);
 	//$xn = str_replace('.mid','.xml',$fn);
-		
+
 	if ($xm==1){
 		header('Content-Type: application/octetstream');
 		header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
@@ -56,7 +56,7 @@ TimestampType:<br>
 <?php
 if ($file!=''&&$xm==0){
 	echo 'File: '.$fn;
-	echo '<hr><pre>';	
+	echo '<hr><pre>';
 	echo htmlspecialchars($xml);
 	echo '</pre>';
 }

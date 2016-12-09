@@ -23,7 +23,7 @@ function rm($dir){
 }
 
 if (!is_dir('tmp')) mkdir('tmp');
-if (!is_dir($save_dir)) mkdir($save_dir);	
+if (!is_dir($save_dir)) mkdir($save_dir);
 
 //---------------------------------------------
 require('midi.class.php');
@@ -53,7 +53,7 @@ if (isset($p['publish'])){
 	unset($p['plug']);
 	if (isset($p['showTxt'])) unset($p['showTxt']);
 	if (isset($p['showXml'])) unset($p['showXml']);
-	
+
 	$str = serialize($p);
 	$m=fopen("mix/$rand.mix","wb");
 	fwrite($m, $str);
@@ -228,8 +228,8 @@ for ($k=5;$k<=8;$k++){
 if ($play){
 	$midi->open(480); //timebase=480, quarter note=120
 	$midi->setBpm($bpm);
-	
-	for ($k=1;$k<=8;$k++) if ($aktiv[$k]){		
+
+	for ($k=1;$k<=8;$k++) if ($aktiv[$k]){
 		$ch = ($k<5)?10:$k;
 		$inst = $p["inst$k"];
 		$n = $p["note$k"];
@@ -237,7 +237,7 @@ if ($play){
 		$t = 0;
 		$ts = 0;
 		$tn = $midi->newTrack() - 1;
-		
+
 		$midi->addMsg($tn, "0 PrCh ch=$ch p=$inst");
 		for ($r=0;$r<$rep;$r++){
 			for ($i=0;$i<16;$i++){
@@ -252,10 +252,10 @@ if ($play){
 			$midi->addMsg($tn, "$ts Off ch=$ch n=$n v=127");
 		}
 		$midi->addMsg($tn, "$ts Meta TrkEnd");
-	}	
+	}
 	$midi->saveMidFile($file);
 	$midi->playMidFile($file,1,1,$loop,$plug);
-?>	
+?>
 	<br><br>
 	<input type="button" name="download" value="Save as SMF (*.mid)" onClick="self.location.href='sequencer.php?download=<?php echo urlencode($file)?>'">
 <?php
@@ -279,7 +279,7 @@ closedir($handle);
 </td></tr></table>
 
 </td></tr></table>
-<?php 
+<?php
 if (isset($p['showTxt'])) echo '<hr><pre>'.$midi->getTxt().'</pre>';
 if (isset($p['showXml'])) echo '<hr><pre>'.htmlspecialchars($midi->getXml()).'</pre>';
 ?>

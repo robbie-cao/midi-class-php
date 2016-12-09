@@ -10,8 +10,8 @@ License:  Freeware
 You may use and modify this software as you wish.
 
 Last Changes:
-	+ bug bix in newTrack(): -1 was missing to return 
-	+ bug fix parsing sysex messages     
+	+ bug bix in newTrack(): -1 was missing to return
+	+ bug fix parsing sysex messages
 
 ****************************************************************************/
 
@@ -632,7 +632,7 @@ function playMidFile($file,$visible=1,$auto=1,$loop=1,$plug=''){
 //---------------------------------------------------------------
 function downloadMidFile($output, $file=false){
 	ob_start("ob_gzhandler"); // for compressed output...
-	
+
 	//$mime_type = 'audio/midi';
 	$mime_type = 'application/octetstream'; // force download
 
@@ -640,7 +640,7 @@ function downloadMidFile($output, $file=false){
 	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
 	header('Content-Disposition: attachment; filename="'.$output.'"');
 	header('Pragma: no-cache');
-	
+
 	if ($file){
 		$d=fopen($file,"rb");
 		fpassthru($d);

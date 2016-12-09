@@ -31,7 +31,7 @@ var $defaultBpm = 63;
 // if tracknumber $tn is specified, the corresponding track will be used
 //---------------------------------------------------------------
 function getRttl($title='',$tn=-1){
-	
+
 	if ($tn<0) $track = $this->_findFirstContentTrack();
 	else $track = $this->getTrack($tn);
 	$commands = array();
@@ -41,24 +41,24 @@ function getRttl($title='',$tn=-1){
 	for ($i=0;$i<$cnt;$i++){
 		$line = $track[$i];
 		$msg = explode(' ',$line);
-		
+
 		// try to get title from meta event
 		if ($title==''&&$msg[1]=='Meta'&&$msg[2]=='TrkName') {
 			$title=trim($msg[3]);
 			if ($title{0}=='"') $title=substr($title, 1);
 			if ($title{strlen($title)-1}=='"') $title=substr($title, 0, -1);
 		}
-			
+
 		if ($msg[1]=='On' && $msg[4]!='v=0'){
 			$time = $msg[0];
-			
+
 			$pause=$time-$last-$dt;
 			if ($pause>0){
 				list($dot, $quarters) = $this->_checkDotted($pause/$this->timebase);
 				$dur = max(1,round(4 / $quarters));
 				$commands[] = ($dur!=$this->defaultDur?$dur:'').'p'.$dot;
 			}
-			
+
 			// find note duration
 			$dt = 0;
 			for ($j=$i+1;$j<$cnt;$j++){
@@ -68,15 +68,15 @@ function getRttl($title='',$tn=-1){
 					break;
 				}
 			}
-			
+
 			eval("\$".$msg[3].';');
 			$note = $this->notes[$n % 12];
 			$scale = floor($n/12);
-			
+
 			if ($dt>0){
-				list($dot, $quarters) = $this->_checkDotted($dt/$this->timebase);				
+				list($dot, $quarters) = $this->_checkDotted($dt/$this->timebase);
 				$dur = max(1,round(4 / $quarters));
-				//<duration> := "1" | "2" | "4" | "8" | "16" | "32" 
+				//<duration> := "1" | "2" | "4" | "8" | "16" | "32"
 				$commands[] = ($dur!=$this->defaultDur?$dur:'').$note.$dot.($scale!=$this->defaultScale?$scale:'');
 				$last = $time;
 			}
@@ -92,40 +92,40 @@ function getRttl($title='',$tn=-1){
 //---------------------------------------------------------------
 // import RTTL (RTTL2MIDI conversion)
 //---------------------------------------------------------------
-function importRttl($rttl){	
+function importRttl($rttl){
 	list($name,$controls,$tones) = explode(':', $rttl);
 	$controls = explode(',', $controls);
 	$tones = explode(',', $tones);
-	
+
 	foreach ($controls as $c) eval('$'.$c.';');
-		
+
 	$this->open();
 	$this->type = 0;
 	$this->timebase = 480;// ???
 	$bpm = isset($b)?$b:$this->defaultBpm;
 	$this->tempo = round(60000000/$bpm);
-		
+
 	$track = array();
 	$track[] = '0 Meta TrkName "'.$name.'"';
 	$track[] = '0 Tempo '.$this->tempo;
-	
+
 	$last = 0;
 	$time = 0;
 	foreach ($tones as $tone){
 		preg_match ( '/^[0-9]*/', $tone, $test);
 		$dur = $test[0];
 		if ($dur == '') $dur = isset($d)?$d:$this->defaultDur;
-		
+
 		preg_match ( '/[a-p](\#*)/', $tone, $test);
 		$note = $test[0];
-		
+
 		preg_match ( '/\./', $tone, $test);
 		$dot = @$test[0];
-		
+
 		preg_match ( '/[0-9]*$/', $tone, $test);
 		$scale = @$test[0];
 		if ($scale=='') $scale = isset($o)?$o:$this->defaultScale;
-		
+
 		$quarters = 4 / $dur;
 		$dt = $quarters * $this->timebase;
 		if ($dot) $dt *= 1.5;
@@ -142,10 +142,10 @@ function importRttl($rttl){
 
 		$time += $dt;
 	} // foreach
-	
+
 	if ($last) $track[] = "$time Off ch=1 n=$last v=100";
 	$track[] = "$time Meta TrkEnd";
-	
+
 	$this->tracks = array($track);
 }
 
@@ -182,6 +182,6 @@ function _checkDotted($quarters){
 			return array('.', $quarters*2/3);
 	return array('', $quarters);
 }
-	
+
 } // END OF CLASS
 ?>

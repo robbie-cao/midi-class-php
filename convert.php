@@ -33,10 +33,10 @@ if ($file!=''){
 	require('midi.class.php');
 	$midi = new Midi();
 	$midi->importMid($file);
-	
+
 	// SHOW OLD TYPE
-	echo 'Old Midi-Type: '.$midi->type."<br>\n";	
-	
+	echo 'Old Midi-Type: '.$midi->type."<br>\n";
+
 	//CONVERT TO TYPE 0
 	function cmp ($a, $b) {
 		$ta = (int) strtok($a,' ');
@@ -50,12 +50,12 @@ if ($file!=''){
 		array_pop ($track);
 		$newTrack=array_merge($newTrack,$track);
 	}
-	
+
 	usort ($newTrack, "cmp");
-	
+
 	$endTime = strtok($newTrack[count($newTrack)-1], " ");
 	$newTrack[]="$endTime Meta TrkEnd";
-	
+
 	$tb = $midi->getTimebase();
 
 	$midi_new = new Midi();
@@ -63,14 +63,14 @@ if ($file!=''){
 	$midi_new->importTxt($txt);
 
 	// SHOW NEW TYPE
-	echo 'New Midi-Type: '.$midi_new->type."<br>\n";	
-	
+	echo 'New Midi-Type: '.$midi_new->type."<br>\n";
+
 	$save_dir = 'tmp/';
 	srand((double)microtime()*1000000);
 	$file = $save_dir.rand().'.mid';
 	$midi_new->saveMidFile($file);
 	$midi_new->playMidFile($file,1,1,0); //optional: 'wm','qt','bk'
-	
+
 ?>
 	<br><br><input type="button" name="download" value="Save converted SMF (*.mid)" onClick="self.location.href='convert.php?download=<?php echo urlencode($file)?>'">
 <?php

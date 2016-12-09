@@ -49,7 +49,7 @@ if (isset($p['rttl'])){
 	$midi->playMidFile($file,1,1,0,$engine);
 ?>
 <br><br><input type="button" name="download" value="Save as SMF (*.mid)" onClick="self.location.href='<?=$_SERVER['PHP_SELF']?>?download=<?=urlencode($file)?>'">
-<?	
+<?
 }
 ?>
 </body>

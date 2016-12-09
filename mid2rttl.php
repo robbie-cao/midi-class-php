@@ -31,10 +31,10 @@ MIDI file (*.mid) to upload: <input type="file" name="mid_upload"> <input type="
 
 if ($file!=''){
 	require('rttl.class.php');
-	
+
 	$fn = $_FILES['mid_upload']['name'];
 	$bn = strtok($fn, '.');
-	
+
 	$midi = new Rttl();
 	$midi->importMid($file);
 ?>

@@ -27,10 +27,10 @@ TimestampType:
 <?php
 if ($file!=''){
 	require('midi.class.php');
-	
+
 	$midi = new Midi();
 	$midi->importMid($file);
-	
+
 	echo 'File: '.$_FILES['mid_upload']['name'];
 	echo '<hr><pre>';
 	echo $midi->getTxt($tt);

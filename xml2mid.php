@@ -28,7 +28,7 @@ function rm($dir){
 }
 
 if (!is_dir('tmp')) mkdir('tmp');
-if (!is_dir($save_dir)) mkdir($save_dir);	
+if (!is_dir($save_dir)) mkdir($save_dir);
 srand((double)microtime()*1000000);
 $file = $save_dir.rand().'.mid';
 
@@ -367,7 +367,7 @@ if (isset($p['txt'])){
 	$txt = $p['txt'];
 	if (get_magic_quotes_gpc()==1) $txt = stripslashes($txt);
 }else $txt = $test;
-	
+
 ?>
 
 <html>
@@ -398,7 +398,7 @@ a:hover	{font-family:font-family:arial;font-size:11px;color:#666666;}
 <?php
 if (isset($p['txt'])){
 	$midi = new Midi();
-	$midi->importXml($txt);		
+	$midi->importXml($txt);
 	$midi->saveMidFile($file);
 	$midi->playMidFile($file,1,1,0,$engine);
 ?>
